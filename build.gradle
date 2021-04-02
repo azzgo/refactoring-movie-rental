@@ -2,6 +2,7 @@ group 'cc.xpbootcamp'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'kotlin'
 apply plugin: 'idea'
 
 sourceCompatibility = 1.8
@@ -39,4 +40,24 @@ dependencies {
     testCompile "org.junit.platform:junit-platform-launcher:${JUNIT5_PLATFORM_VERSION}"
     testCompile 'org.assertj:assertj-core:3.10.0'
     testCompile 'org.mockito:mockito-junit-jupiter:2.17.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+}
+buildscript {
+    ext.kotlin_version = '1.4.32'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
